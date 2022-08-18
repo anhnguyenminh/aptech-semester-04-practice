@@ -1,0 +1,98 @@
+<%-- 
+    Document   : hien
+    Created on : Aug 18, 2022, 4:15:38 PM
+    Author     : Admin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>Roll no</th>
+                <th>Full name</th>
+                <th>Classname</th>
+
+            </tr>
+            <c:forEach items="${sinhViens}" var="sv" >
+                <tr>
+                    <td>${sv.rollNo}</td>
+                    <th>${sv.fullName}</th>
+                    <th>${sv.className}</th>
+
+                </tr>
+            </c:forEach>
+        </table>
+    </body>
+</html>
+
+INDEX SS1
+
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="Hien">
+            Name: <input type="text" name="txtN" />
+            <input type="submit" /> 
+        </form>
+    </body>
+</html>
+
+
+
+INDEX REST LAST
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#btn-hien").click(function () {
+                    $.ajax({url: "http://localhost:8080/WS_SessionLast/webresources/sinhviens/",
+                        success: function (result) {
+                            var allRow = "";
+                            result.forEach(rs => {
+                                allRow += "<tr>";
+                                allRow += "<td>" + sv.roll + "</td>";
+                                allRow += "<td>" + sv.name + "</td>";
+                                allRow += "</tr>";
+                            });
+                            $("#hienODay tbody").empty().append(allRow);
+                        }});
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <table id="hienODay">
+            <thead>
+                <tr>
+                    <th>Roll</th>
+                    <th>Name</th>
+                </tr>
+            <tbody></tbody>
+        </thead>
+
+    </table>
+
+    <button id="btn-hien">Get External Content</button>
+
+</body>
+</html>
